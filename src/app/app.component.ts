@@ -16,7 +16,4 @@ export class AppComponent {
     
   }
 
-  alteraTexto(){
-    this.title = 'Teste';
-  }
 }
