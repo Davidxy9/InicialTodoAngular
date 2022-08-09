@@ -2,7 +2,17 @@
 <ul>
   <li *ngFor="let todo of todos">
     {{ todo.id }}. {{ todo.title }} |
-    <button *ngIf="!todo.done">CONCLUIR</button> |
-    <button *ngIf="todo.done">REFAZER</button> |
-    <button (click)="remove(todo)">REMOVER</button> </li>
+    <button *ngIf="!todo.done" (click)="markAsDone(todo)">CONCLUIR</button> |
+    <button *ngIf="todo.done" (click)="markAsUndone(todo)">REFAZER</button> |
+    <button (click)="remove(todo)">REMOVER</button>
+  </li>
 </ul>
+
+<form [formGroup]="form">
+  <fieldset>
+    <label>Tarefa: </label>
+    <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
+    <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 3 e 60 caracteres</small>
+    <button [disabled]="form.invalid">Salvar</button>
+  </fieldset>
+</form>
